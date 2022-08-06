@@ -9,3 +9,9 @@ function clean_table() {
                     </tr>`;
     $('#table').html(empty_table);
 }
+
+function clean_input() {
+    const field = $('#x_value');
+    $('#x' + field.val()).removeClass('selected');
+    field.val("");
+}

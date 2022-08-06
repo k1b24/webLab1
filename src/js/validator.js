@@ -1,12 +1,13 @@
 function validate_inputed_values(x, y, r) {
 
+    let validation_info_box = document.querySelector('.validation_info');
+    validation_info_box.classList.remove("show");
+
     let validation_info = "";
     let x_validation_success = false;
     let y_validation_success = false;
     let r_validation_success = false;
     let validation_success = false;
-    let validation_info_box = document.querySelector('.validation_info');
-    validation_info_box.style.visibility = 'hidden';
     
     if (x === undefined || x === "") {
         validation_info += "<span>Не выбрано значение X!</span>";
@@ -32,7 +33,7 @@ function validate_inputed_values(x, y, r) {
 
     if (!validation_success) {
         $(".validation_info").html("<br>" + validation_info + "<br>");
-        validation_info_box.style.visibility = 'visible';
+        validation_info_box.classList.add("show");
     }
 
     return validation_success;
