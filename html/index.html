@@ -5,14 +5,11 @@
   <meta charset="utf-8">
   <title>Web 1st lab</title>
   <link rel="icon" href="favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" type="text/css" href="../src/css/body_style.css">
-  <link rel="stylesheet" type="text/css" href="../src/css/plot_style.css">
-  <link rel="stylesheet" type="text/css" href="../src/css/user_input_style.css">
-  <link rel="stylesheet" type="text/css" href="../src/css/table_style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="../src/js/update.js"></script>
   <script src="../src/js/validator.js"></script>
   <script src="../src/js/cleaner.js"></script>
+  <script src="../src/js/y_length_checker.js"></script>
   <script src="../src/js/process_x_selection.js"></script>
   <style>
     body {
@@ -24,6 +21,7 @@
     header {
       background-color: #8ac6d1;
       font-family: monospace;
+      /* background-color: red; */
       font-size: 2rem;
       font-weight: 700;
       width: 100vw;
@@ -34,6 +32,7 @@
     /* Селектор псевдоэлемента */
     ::selection {
       background: #cbf3ea;
+      /* background: inherit inherit; */
     }
 
     .form_table tr td {
@@ -140,10 +139,10 @@
 
 
     /* Селектор дочернего элемента */
-    .user_input>.buttons {
+    .user_input > #form > .buttons {
       display: flex;
       flex-direction: row;
-      justify-content: center;
+      justify-content: centers;
       text-align: center;
       height: 20%;
     }
@@ -259,7 +258,7 @@
 
               <div class="y_value">
                 <label for="y_value">Введите Y:</label>
-                <input type="text" id="y_value" name="y_value">
+                <input type="text" id="y_value" name="y_value" oninput="limit_y_length(event, 13)">
               </div>
 
               <div class="r_value">

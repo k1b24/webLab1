@@ -1,6 +1,5 @@
 <?php
-
-date_default_timezone_set('Europe/Novosibirsk');
+date_default_timezone_set('Europe/Moscow');
 
 function check_hit($x, $y, $r) {
     $first_quarter_hit = false;
@@ -23,25 +22,24 @@ function check_hit($x, $y, $r) {
 }
 
 $start = microtime(true);
+
 $current_time = date("H:i:s");
-    
 if (isset($_POST["x"]) && isset($_POST["y"]) && isset($_POST["r"])) {
-    $x = $_POST["x"];
-    $y = $_POST["y"];
-    $r = $_POST["r"];
+    $x = intval($_POST["x"]);
+    $y = floatval($_POST["y"]);
+    $r = intval($_POST["r"]);
+    
+        $checked_hit = check_hit($x, $y, $r) ? "TRUE" : "FALSE";
 
-    $checked_hit = check_hit($x, $y, $r) ? "TRUE" : "FALSE";
+        $finish_time = number_format(microtime(true) - $start, 8, ".", "") * 1000000;
 
-    $finish_time = number_format(microtime(true) - $start, 8, ".", "") * 1000000;
-
-    exit("
-        <tr>
-            <th>$x</th>
-            <th>$y</th>
-            <th>$r</th>
-            <th>$current_time</th>
-            <th>$finish_time</th>
-            <th>$checked_hit</th>
-        </tr>");  
+        exit("
+            <tr>
+                <th>$x</th>
+                <th>$y</th>
+                <th>$r</th>
+                <th>$current_time</th>
+                <th>$finish_time</th>
+                <th>$checked_hit</th>
+            </tr>");
 }
-exit("Что-то пошло не так!");
