@@ -11,11 +11,11 @@ function recieveSubmit() {
             async: false,
             data: {"x": x_value.trim(), "y": y_value.trim(), "r": r_value.trim()},
             success: function(data) {
-                $('#table tr:last').after(data);
+                $('#result_table tr:last').after(data);
             },
             error: function(data) { 
                 alert(data);
             }
-        });        
+        });
     }
 }

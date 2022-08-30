@@ -7,7 +7,7 @@ function clean_table() {
                         <th>Время выполнения</th>
                         <th>Результат</th>
                     </tr>`;
-    $('#table').html(empty_table);
+    $('#result_table').html(empty_table);
 }
 
 function clean_input() {
