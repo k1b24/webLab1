@@ -8,6 +8,7 @@ function clean_table() {
                         <th>Результат</th>
                     </tr>`;
     $('#result_table').html(empty_table);
+    window.localStorage.removeItem('table_data');
 }
 
 function clean_input() {

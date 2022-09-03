@@ -11,7 +11,7 @@ function recieveSubmit() {
             async: false,
             data: {"x": x_value.trim(), "y": y_value.trim(), "r": r_value.trim()},
             success: function(data) {
-                $('#result_table tr:last').after(data);
+                update_table(data);
             },
             error: function(data) { 
                 alert(data);

@@ -1,4 +1,6 @@
 <?php
+include 'validator.php';
+
 date_default_timezone_set('Europe/Moscow');
 
 function check_hit($x, $y, $r) {
@@ -22,17 +24,19 @@ function check_hit($x, $y, $r) {
 }
 
 $start = microtime(true);
+$validator = new Validator;
 
 $current_time = date("H:i:s");
 if (isset($_POST["x"]) && isset($_POST["y"]) && isset($_POST["r"])) {
-    $x = intval($_POST["x"]);
-    $y = floatval($_POST["y"]);
-    $r = intval($_POST["r"]);
-    
+    if ($validator->validate($_POST["x"], $_POST["y"], $_POST["r"])) {
+        $x = intval($_POST["x"]);
+        $y = floatval($_POST["y"]);
+        $r = intval($_POST["r"]);
+        
         $checked_hit = check_hit($x, $y, $r) ? "TRUE" : "FALSE";
-
+    
         $finish_time = number_format(microtime(true) - $start, 8, ".", "") * 1000000;
-
+    
         exit("
             <tr>
                 <th>$x</th>
@@ -42,4 +46,7 @@ if (isset($_POST["x"]) && isset($_POST["y"]) && isset($_POST["r"])) {
                 <th>$finish_time</th>
                 <th>$checked_hit</th>
             </tr>");
+    } else {
+        exit("Сервер получил некорректные данные для проверки");
+    }
 }
