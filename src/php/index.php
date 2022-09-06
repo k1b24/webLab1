@@ -1,7 +1,7 @@
 <?php
 include 'validator.php';
 
-date_default_timezone_set('Europe/Moscow');
+date_default_timezone_set('UTC');
 
 function check_hit($x, $y, $r) {
     $first_quarter_hit = false;
@@ -26,13 +26,14 @@ function check_hit($x, $y, $r) {
 $start = microtime(true);
 $validator = new Validator;
 
-$current_time = date("H:i:s");
 if (isset($_POST["x"]) && isset($_POST["y"]) && isset($_POST["r"])) {
     if ($validator->validate($_POST["x"], $_POST["y"], $_POST["r"])) {
         $x = intval($_POST["x"]);
         $y = floatval($_POST["y"]);
         $r = intval($_POST["r"]);
-        
+        $timezone = $_POST["timezone"];
+        $current_time = date("H:i:s", time() - $timezone * 60);
+
         $checked_hit = check_hit($x, $y, $r) ? "TRUE" : "FALSE";
 
         $finish_time = number_format(microtime(true) - $start, 8, ".", "") * 1000000;
