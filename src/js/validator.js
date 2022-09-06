@@ -16,7 +16,7 @@ function validateInputedValues(x, y, r) {
     }
 
     if (!(y.trim() === "")) {
-        if (/^(-?\d*\.\d+|-?\d*|-?\d*e[-\+]?\d+)$/.test(y)) {
+        if (/^(-?\d*\.\d+|-?\d*|-?\d*(\.\d+)?e[-\+]?\d+)$/.test(y)) {
             if ((parseFloat(y) > -5) && (parseFloat(y) < 3)) {
                 y_validation_success = true;
             } else validation_info += "<span>Координата Y задается числом в промежутке (-5..3)!</span>";
