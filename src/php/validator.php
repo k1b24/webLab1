@@ -25,7 +25,7 @@ class Validator {
                 return false;
             }
     
-            if (!($r_num > self::R_MIN && $r_num < self::R_MAX)) {
+            if (!($r_num >= self::R_MIN && $r_num <= self::R_MAX)) {
                 return false;
             }
 

@@ -1,4 +1,4 @@
-function process_x_selection(x) {
+function processXSelection(x) {
     const field = $('#x_value');
     if (field.val() === x) {
         field.val("");

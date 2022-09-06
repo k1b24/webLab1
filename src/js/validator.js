@@ -1,4 +1,4 @@
-function validate_inputed_values(x, y, r) {
+function validateInputedValues(x, y, r) {
 
     let validation_info_box = document.querySelector('.validation_info');
     validation_info_box.classList.remove("show");

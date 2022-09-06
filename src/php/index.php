@@ -34,7 +34,7 @@ if (isset($_POST["x"]) && isset($_POST["y"]) && isset($_POST["r"])) {
         $r = intval($_POST["r"]);
         
         $checked_hit = check_hit($x, $y, $r) ? "TRUE" : "FALSE";
-    
+
         $finish_time = number_format(microtime(true) - $start, 8, ".", "") * 1000000;
     
         exit("

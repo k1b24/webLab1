@@ -11,6 +11,7 @@
   <script src="../src/js/cleaner.js"></script>
   <script src="../src/js/y_length_checker.js"></script>
   <script src="../src/js/process_x_selection.js"></script>
+  <script src="../src/js/result_table_updater.js" defer></script>
   <style>
     body {
       margin: 0;
@@ -280,22 +281,22 @@
                     <div class="x_value">
                       <label for="x_value">Введите X:</label>
                       <div class="btn-group" data-toggle="buttons">
-                        <button type="button" class="x-button" id="x-3" onclick="process_x_selection('-3')">-3</button>
-                        <button type="button" class="x-button" id="x-2" onclick="process_x_selection('-2')">-2</button>
-                        <button type="button" class="x-button" id="x-1" onclick="process_x_selection('-1')">-1</button>
-                        <button type="button" class="x-button" id="x0" onclick="process_x_selection('0')">0</button>
-                        <button type="button" class="x-button" id="x1" onclick="process_x_selection('1')">1</button>
-                        <button type="button" class="x-button" id="x2" onclick="process_x_selection('2')">2</button>
-                        <button type="button" class="x-button" id="x3" onclick="process_x_selection('3')">3</button>
-                        <button type="button" class="x-button" id="x4" onclick="process_x_selection('4')">4</button>
-                        <button type="button" class="x-button" id="x5" onclick="process_x_selection('5')">5</button>
+                        <button type="button" class="x-button" id="x-3" onclick="processXSelection('-3')">-3</button>
+                        <button type="button" class="x-button" id="x-2" onclick="processXSelection('-2')">-2</button>
+                        <button type="button" class="x-button" id="x-1" onclick="processXSelection('-1')">-1</button>
+                        <button type="button" class="x-button" id="x0" onclick="processXSelection('0')">0</button>
+                        <button type="button" class="x-button" id="x1" onclick="processXSelection('1')">1</button>
+                        <button type="button" class="x-button" id="x2" onclick="processXSelection('2')">2</button>
+                        <button type="button" class="x-button" id="x3" onclick="processXSelection('3')">3</button>
+                        <button type="button" class="x-button" id="x4" onclick="processXSelection('4')">4</button>
+                        <button type="button" class="x-button" id="x5" onclick="processXSelection('5')">5</button>
                         <input type="hidden" name="x_coord" id="x_value">
                       </div>
                     </div>
 
                     <div class="y_value">
                       <label for="y_value">Введите Y:</label>
-                      <input type="text" id="y_value" name="y_value" oninput="limit_y_length(event, 13)">
+                      <input type="text" id="y_value" name="y_value" oninput="limitYLength(event, 13)">
                     </div>
 
                     <div class="r_value">
@@ -312,7 +313,7 @@
                   </div>
 
                   <div class="buttons">
-                    <input id="reset" type="reset" value="Сбросить" onclick="clean_input()">
+                    <input id="reset" type="reset" value="Сбросить" onclick="cleanInput()">
                     <input id="submit" type="submit" value="Проверить">
                   </div>
                 </form>
@@ -325,7 +326,7 @@
             </td>
             <td class="result_table_column">
               <div class="clean_button">
-                <input type="button" value="Очистить таблицу" onclick="clean_table()">
+                <input type="button" value="Очистить таблицу" onclick="cleanTable()">
               </div>
                   <table id="result_table">
                     <tr>
@@ -344,5 +345,4 @@
     </tr>
   </table>
 </body>
-<script src="../src/js/result_table_updater.js"></script>
 </html>
