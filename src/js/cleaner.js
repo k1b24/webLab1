@@ -9,8 +9,9 @@ function cleanTable() {
                     </tr>`;
     $('#result_table').html(empty_table);
     $.ajax({
-        type: "DELETE",
+        type: "POST",
         url: "../src/php/index.php",
+        data: {"delete_argument": "delete"},
         async: false,
     });
 }
