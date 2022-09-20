@@ -2,6 +2,7 @@
 include 'validator.php';
 
 date_default_timezone_set('UTC');
+session_start();
 
 function check_hit($x, $y, $r) {
     $first_quarter_hit = false;
@@ -26,28 +27,41 @@ function check_hit($x, $y, $r) {
 $start = microtime(true);
 $validator = new Validator;
 
-if (isset($_POST["x"]) && isset($_POST["y"]) && isset($_POST["r"])) {
-    if ($validator->validate($_POST["x"], $_POST["y"], $_POST["r"])) {
-        $x = intval($_POST["x"]);
-        $y = floatval($_POST["y"]);
-        $r = intval($_POST["r"]);
-        $timezone = $_POST["timezone"];
-        $current_time = date("H:i:s", time() - $timezone * 60);
-
-        $checked_hit = check_hit($x, $y, $r) ? "TRUE" : "FALSE";
-
-        $finish_time = number_format(microtime(true) - $start, 8, ".", "") * 1000000;
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    if(!isset($_SESSION['table'])) {
+        $_SESSION['table'] = '';
+    }
+    $table_rows = $_SESSION['table'];
+    exit($table_rows);
+} else if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
+    if(!isset($_SESSION['table'])) {
+        $_SESSION['table'] = '';
+    }
+    $_SESSION['table'] = '';
+    $table_rows = $_SESSION['table'];
+    exit($table_rows);
+} else {
+    if (isset($_POST["x"]) && isset($_POST["y"]) && isset($_POST["r"])) {
+        if ($validator->validate($_POST["x"], $_POST["y"], $_POST["r"])) {
+            $x = intval($_POST["x"]);
+            $y = floatval($_POST["y"]);
+            $r = intval($_POST["r"]);
+            $timezone = $_POST["timezone"];
+            $current_time = date("H:i:s", time() - $timezone*60);
     
-        exit("
-            <tr>
-                <th>$x</th>
-                <th>$y</th>
-                <th>$r</th>
-                <th>$current_time</th>
-                <th>$finish_time</th>
-                <th>$checked_hit</th>
-            </tr>");
-    } else {
-        exit("Сервер получил некорректные данные для проверки");
+            $checked_hit = check_hit($x, $y, $r) ? "TRUE" : "FALSE";
+    
+            $finish_time = number_format(microtime(true) - $start, 8, ".", "") * 1000000;
+            $answer_string = "<tr><th>$x</th><th>$y</th><th>$r</th><th>$current_time</th><th>$finish_time</th><th>$checked_hit</th></tr>";
+            if(!isset($_SESSION['table'])) {
+                $_SESSION['table'] = '';
+            }
+            $table_rows = $_SESSION['table'].$answer_string;
+    
+            $_SESSION['table'] = $table_rows;
+            exit($answer_string);
+        } else {
+            exit("Сервер получил некорректные данные для проверки");
+        }
     }
 }

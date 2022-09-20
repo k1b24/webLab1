@@ -8,7 +8,11 @@ function cleanTable() {
                         <th>Результат</th>
                     </tr>`;
     $('#result_table').html(empty_table);
-    window.localStorage.removeItem('table_data');
+    $.ajax({
+        type: "DELETE",
+        url: "../src/php/index.php",
+        async: false,
+    });
 }
 
 function cleanInput() {
