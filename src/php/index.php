@@ -33,14 +33,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     }
     $table_rows = $_SESSION['table'];
     exit($table_rows);
-} else if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
+} else if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["delete_argument"])) {
     if(!isset($_SESSION['table'])) {
         $_SESSION['table'] = '';
     }
     $_SESSION['table'] = '';
     $table_rows = $_SESSION['table'];
     exit($table_rows);
-} else {
+} else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST["x"]) && isset($_POST["y"]) && isset($_POST["r"])) {
         if ($validator->validate($_POST["x"], $_POST["y"], $_POST["r"])) {
             $x = intval($_POST["x"]);
